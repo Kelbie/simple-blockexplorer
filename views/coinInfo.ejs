@@ -1,0 +1,29 @@
+<div class="expand">
+    <div class="name">
+        <%- coins[id.toUpperCase()].name %>
+    </div>
+    <div class="ticker">
+        (<%- id.toUpperCase() %>)
+    </div>
+    <div class="list">
+        <ul>
+            <a href="#"><li>About</li></a>
+            <a href="#"><li>Exchanges</li></a>
+            <a href="#"><li>Wallets</li></a>
+            <a href="#"><li>Explorers</li></a>
+            <a href="#"><li>Forums</li></a>
+        </ul>
+    </div>
+    <div id="about">
+        <%- coins[id.toUpperCase()].desc %>
+    </div>
+    <div class="box" id="priceData">
+        Price
+    </div>
+    <div class="box" id="mempoolData">
+        Mempool
+    </div>
+    <div class="box" id="blockData">
+        Blocks
+    </div>
+</div>

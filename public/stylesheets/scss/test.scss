@@ -1,0 +1,160 @@
+$color_1: #E8E8E8;
+$color_2: #242424;
+$color_3: #6C6C6C;
+$color_4: #FF3B00;
+$color_5: #00BE33;
+$color_6: #9F9F9F;
+
+* {
+    font-family: Roboto;
+    padding: 0;
+    margin: 0;
+}
+
+.coins {
+    position: absolute;
+    display: block;
+    height: 100%;
+
+    .coin {
+        width: 100%;
+        background: $color_1;
+        padding: 16px;
+        box-shadow: 0px 0px 5px 0px $color_3;
+
+        .rank {
+            font-size: 10px;
+            color: $color_2;
+        }
+    }
+
+}
+
+#selected {
+    background: $color_2;
+    box-shadow: 0px 0px 5px 0px $color_4;
+
+    .rank {
+        color: $color_1;
+    }
+}
+
+.coin>* {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.container {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+div.title {
+}
+
+div.name {
+    display: inline-block;
+    font-weight: normal;
+    font-size: 16px;
+    color: $color_6;
+}
+
+div.ticker {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 10px;
+    color: $color_3;
+}
+
+
+div.price {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    color: $color_2;
+}
+
+div.value {
+    display: block;
+}
+
+#selected>.info>.value>.price {
+    color: $color_1;
+}
+
+div.percent {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: normal;
+    color: $color_5;
+}
+
+.expand {
+    display: grid;
+    grid-template: "name ticker"
+                "list about"
+                "chart chart";
+    padding: 32px;
+    padding-left: 64px;
+    padding-right: 64px;
+    margin-left: 300px;
+    background: $color_2;
+}
+
+.expand>.name {
+    font-size: 48px;
+    font-weight: bold;
+    grid-area: name;
+}
+
+.expand>.ticker {
+    font-size: 24px;
+    font-weight: bold;
+    grid-area: ticker;
+}
+
+.list {
+    display: table;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 24px;
+    padding-right: 36px;
+    background: $color_2;
+    border: solid 2px rgba(255, 59, 0, 0.25);
+
+    grid-area: list;
+}
+
+li {
+    list-style-type: none;
+    color: $color_1;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    transition: 0.5s ease;
+}
+
+li:hover {
+    color: $color_4;
+    opacity: 0.75;
+}
+
+
+#about {
+    display: inline-block;
+    max-width: 100%;
+    color: $color_1;
+
+    grid-area: about;
+}
+
+a {
+    text-decoration: none;
+}

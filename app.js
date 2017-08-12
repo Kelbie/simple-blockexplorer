@@ -4,8 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var http = require('http');
 
 var index = require('./routes/index');
+var about = require('./routes/about');
+var getData = require('./routes/getData');
 
 var app = express();
 
@@ -24,6 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/about', about);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -42,5 +46,17 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+
+function getPrice(ticker) {
+}
+
+function timeout() {
+    setTimeout(function() {
+        getPrice("btc");
+        timeout();
+    }, 60000);
+}
+
+timeout();
 
 module.exports = app;
