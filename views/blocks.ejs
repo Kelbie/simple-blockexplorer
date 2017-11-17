@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-    </head>
-    <body>
-        Blocks: <%- blockchain.blocks %>
-        Difficulty: <%- blockchain.difficulty %>
-        Median Time: <%- blockchain.mediantime %>
-    </body>
+
+<head>
+    <meta charset="utf-8">
+    <title><%- blocks[0].height %></title>
+    <link rel="stylesheet" href="/stylesheets/css/basic.css">
+    <link rel="stylesheet" href="/stylesheets/css/graph.css">
+    <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+</head>
+
+<body>
+    <%- include header.ejs %>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Height</td>
+                <td>Time</td>
+                <td>Transactions</td>
+                <td>Hash</td>
+                <td>Size</td>
+                <td>Weight</td>
+            </tr>
+        </thead>
+        <tbody id="blocks">
+            <% for (var i = 0; i < blocks.length; i++) { %>
+                <tr>
+                    <td><a href="/block/<%- blocks[i].hash %>"><%- blocks[i].height %></a></td>
+                    <td><%- new Date(blocks[i].time*1000).toLocaleString() %></td>
+                    <td><a href="/block/<%- blocks[i].hash %>#txs"><%- blocks[i].tx.length.toLocaleString() %></a></td>
+                    <td><a href="/block/<%- blocks[i].hash %>"><%- blocks[i].hash %></a></td>
+                    <td>
+                        <div><%- blocks[i].size.toLocaleString() %></div>
+                        <!--<div style="font-size: 0px;">
+                            <div style="display: inline-block; height: 5px; width:<%- blocks[i].size / 4000000 * 100 %>%; background: rgb(73, 170, 232);"></div>
+                            <div style="display: inline-block; height: 5px; width:<%- 100 - (blocks[i].size / 4000000 * 100) %>%; background: rgb(14, 61, 92);"></div>
+                        </div>-->
+                    </td>
+                    <td><%- blocks[i].weight.toLocaleString() %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+
 </html>

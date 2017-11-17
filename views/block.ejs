@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/stylesheets/css/basic.css">
+</head>
+
+<body>
+    <%- include header.ejs %>
+    <!-- No Styles -->
+    <table class="table">
+        <thead>
+            <td><h2>Block</h2></td>
+            <td></td>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Height:</td>
+                <td><a href=""><%- height.toLocaleString() %></a><br></td>
+            </tr>
+            <tr>
+                <td>Hash:</td>
+                <td><a href=""><%- hash %></a></td>
+            </tr>
+            <tr>
+                <td>Time:</td>
+                <td><%- new Date(time*1000).toLocaleString() %></td>
+            </tr>
+            <tr>
+                <td>Transactions:</td>
+                <td><a href="#txs"><%- txs.toLocaleString() %></a></td>
+            </tr>
+            <tr>
+                <td>Size:</td>
+                <td><%- (size/1000).toLocaleString() %> kB</td>
+            </tr>
+            <tr>
+                <td>Weight:</td>
+                <td><%- weight.toLocaleString() %></td>
+            </tr>
+            <tr>
+                <td>Difficulty:</td>
+                <td><%- difficulty.toLocaleString() %></td>
+            </tr>
+            <tr>
+                <td>Version:</td>
+                <td>0x<%- versionhex %></td>
+            </tr>
+            <tr>
+                <td>Nonce:</td>
+                <td><%- nonce.toLocaleString() %></td>
+            </tr>
+            <tr>
+                <td>Merkle Root:</td>
+                <td><%- merkleroot %></td>
+            </tr>
+            <tr>
+                <td>Next Block Hash:</td>
+                <td><a href="/block/<%- nextblockhash %>"><%- nextblockhash %></a></td>
+            </tr>
+            <tr>
+                <td>Previous Block Hash:</td>
+                <td><a href="/block/<%- previousblockhash %>"><%- previousblockhash %></a></td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <table class="table highlight" id="txs">
+        <thead>
+            <td><h2>Transactions</h2></td>
+        </thead>
+        </tbody>
+            <% for (var i = 0; i < txs; i++) { %>
+                <tr>
+                    <td><a href="/tx/<%- txsraw[i] %>"><%- txsraw[i] %></a></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

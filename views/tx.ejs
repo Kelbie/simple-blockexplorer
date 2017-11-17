@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="/stylesheets/css/basic.css">
+        <link rel="stylesheet" href="/stylesheets/css/graph.css">
+    </head>
+    <body>
+        <%- include header.ejs %>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td><h2>Transaction</h2></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="title">Txid:</td>
+                    <td><a href=""><%- txid %></a></td>
+                </tr>
+                <tr>
+                    <td>Confirmations:</td>
+                    <td><%- confirmations.toLocaleString() %></td>
+                </tr>
+                <tr>
+                    <td>Block Hash:</td>
+                    <td><a href="/block/<%- blockhash %>"><%- blockhash %></a></td>
+                </tr>
+                <tr>
+                    <td>Time:</td>
+                    <td><%- new Date(time*1000).toLocaleString() %></td>
+                </tr>
+                <tr>
+                    <td>Fees:</td>
+                    <td>
+                        <object style="height: 10px;" data="/icons/blackBitcoin.svg"></object><%- fee %>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table id="graph">
+            <tbody>
+                <% for (i = 0; i < Math.max(vout.length, vin.length) + 1; i++) { %>
+                    <tr>
+                        <% if (vin.length-1 >= i) { %>
+                            <td><div class="in"><a href="/address/<%- vin[i].scriptPubKey.addresses %>"><%- vin[i].scriptPubKey.addresses %></a><div></td>
+                            <td>
+                                <div class="value">
+                                    <object style="height: 10px;" data="/icons/whiteBitcoin.svg"></object><%- vin[i].value %>
+                                </div>
+                            </td>
+                            <td><div class="linkin"></div></td>
+                        <% } else if (vin.length == 0 && i == 0) { // NEW COINS %>
+                            <td><div class="in">New Coins<div></td>
+                            <td>
+                                <div class="value">
+                                    <object style="height: 10px;" data="/icons/whiteBitcoin.svg"></object><%- blockreward %>
+                                </div>
+                            </td>
+                            <td><div class="linkin"></div></td>
+                        <% } else if (vin.length == 0 && i == 1) { // BLOCK FEES %>
+                            <td><div class="in">Total Block Fees<div></td>
+                            <td>
+                                <div class="value">
+                                    <object style="height: 10px;" data="/icons/whiteBitcoin.svg"></object><%- (vout[i-1].value - blockreward).toFixed(8) %>
+                                </div>
+                            </td>
+                            <td><div class="linkin"></div></td>
+                        <% } else { // NO INPUTS AT 'i' %>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        <% } %>
+
+
+                        <% if (vout.length-1 >= i) { %>
+                            <td><div class="linkout"></div></td>
+                            <td>
+                                <% if (vout[i].scriptPubKey.type != "nulldata") { %>
+                                    <div class="out"><a href="/address/<%- vout[i].scriptPubKey.addresses %>"><%- vout[i].scriptPubKey.addresses %><a/></div>
+                                <% } else { %>
+                                    <div class="out"><a href="" style="color: red;">Unable to Decode<a/></div>
+                                <% } %>
+                            </td>
+                            <td>
+                                <div class="value">
+                                    <object style="height: 10px;" data="/icons/whiteBitcoin.svg"></object><%- vout[i].value %>
+                                </div>
+                            </td>
+                        <% } else { // NO OUTPUTS AT 'i' %>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        <% } %>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </body>
+</html>

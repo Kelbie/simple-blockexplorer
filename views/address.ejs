@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script type="text/javascript" src="/qrcodelib/qrcode.js"></script>
+        <link rel="stylesheet" href="/stylesheets/css/basic.css">
+    </head>
+    <body>
+        <%- include header.ejs %>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Address:</td>
+                    <td><a href=""><%- address %></a></td>
+                    <td id="qrcode" style="width:75px;height:75px;"></td>
+                </tr>
+                <tr>
+                    <td>Valid Address</td>
+                    <td><%- isValid %></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>ScriptPubKey</td>
+                    <td><%- scriptPubKey %></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    	<script type="text/javascript">
+    		var qrcode = new QRCode(document.getElementById("qrcode"), {
+    			width: 75,
+    			height: 75
+    		});
+    		qrcode.makeCode("<%- address %>");
+    	</script>
+    </body>
+</html>

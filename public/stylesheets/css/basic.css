@@ -1,0 +1,37 @@
+* {
+    font-family: Monospace;
+    padding: 0;
+    margin: 0;
+}
+body {
+    background: white;
+    margin: 4px;
+}
+
+body  >  * {
+    margin-bottom: 4px;
+}
+
+.table > * > tr > td {
+    vertical-align: top;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 4px;
+}
+
+.table {
+    border-collapse: collapse;
+    border: 1px solid #d7d7d7;
+    background-color: #f3f3f3;
+    border-radius: 2px;
+}
+
+.table > * > tr {
+    box-shadow: 0px 5px 4px -6px rgba(0, 0, 0, 0.2);
+}
+
+a {
+    text-decoration: none;
+    color: rgb(17, 131, 204);
+}
