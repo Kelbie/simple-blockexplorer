@@ -1,5 +1,10 @@
-# myapp
+# Simple BlockExplorer
 
-`npm install`
+Page with list of blocks:
+![](1.png)
 
-`npm start`
+Page with block data and a list of transactions:
+![](2.png)
+
+Page with transactions data:
+![](3.png)

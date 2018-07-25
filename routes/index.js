@@ -6,8 +6,8 @@ var async = require('async');
 var client = new bitcoin.Client({
     host: 'localhost',
     port: 8332,
-    user: 'user',
-    pass: 'root'
+    user: 'lol',
+    pass: 'lol'
 });
 
 function getNewestBlock(req, res, next) {
@@ -59,11 +59,13 @@ function getNBlocks(req, res, next) {
 router.get('/blocks', function(req, res, next) {
     // Each call is a function
     calls = [];
+    console.log(1);
 
     // Pushing initial function that gets the latest block info
     calls.push(
         function(callback) {
             client.getBestBlockHash(function(err, bestblockhash) {
+                console.log(bestblockhash);
                 client.getBlock(bestblockhash, function(err, block) {
                     blocks = [block];
                     callback(null, blocks);
